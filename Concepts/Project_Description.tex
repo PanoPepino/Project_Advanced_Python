@@ -1,0 +1,129 @@
+\documentclass[11pt]{article} % Font size
+
+
+\usepackage{amsmath, amsfonts, amsthm} % Math packages
+\usepackage{hyperref}
+
+\usepackage{listings} % Code listings, with syntax highlighting
+
+\usepackage[english]{babel} % English language hyphenation
+
+\usepackage{graphicx} % Required for inserting images
+\graphicspath{{Figures/}{./}} % Specifies where to look for included images (trailing slash required)
+
+\usepackage{booktabs} % Required for better horizontal rules in tables
+\usepackage{amsmath}
+\usepackage{color}
+
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\usepackage{enumitem} % Required for list customisation
+\setlist{noitemsep} % No spacing between list items
+
+
+
+\usepackage{geometry} % Required for adjusting page dimensions and margins
+
+\geometry{
+	paper=a4paper, % Paper size, change to letterpaper for US letter size
+	top=1.5cm, % Top margin
+	bottom=3cm, % Bottom margin
+	left=3cm, % Left margin
+	right=3cm, % Right margin
+	headheight=0.5cm, % Header height
+	footskip=1.5cm, % Space from the bottom margin to the baseline of the footer
+	headsep=0.75cm, % Space from the top margin to the baseline of the header
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Use 8-bit encoding
+
+\usepackage{fourier} % Use the Adobe Utopia font for the document
+
+
+
+\usepackage{sectsty} % Allows customising section commands
+
+\sectionfont{\vspace{6pt}\centering\normalfont\scshape} % \section{} styling
+\subsectionfont{\normalfont\bfseries} % \subsection{} styling
+\subsubsectionfont{\normalfont\itshape} % \subsubsection{} styling
+\paragraphfont{\normalfont\scshape} % \paragraph{} styling
+
+
+
+\usepackage{scrlayer-scrpage} % Required for customising headers and footers
+
+\ohead*{} % Right header
+\ihead*{} % Left header
+\chead*{} % Centre header
+
+\ofoot*{} % Right footer
+\ifoot*{} % Left footer
+\cfoot*{\pagemark} % Centre footer
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{	
+	\normalfont\normalsize
+	\textsc{(Advanced Python and Github 2023)}\\ % Your university, school and/or department name(s)
+	\vspace{5pt} % Whitespace
+	\rule{\linewidth}{0.2pt}\\ % Thin top horizontal rule
+	\vspace{10pt} % Whitespace
+	{\huge Amplitude Term Hunt}\\ % The assignment title
+	\vspace{1pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+	\vspace{-35pt} % Whitespace
+	\date{}
+}
+
+
+
+\begin{document}
+
+\maketitle 
+
+%-------------------------------------------------------------------------
+
+\section{Introduction}
+
+The purpose of this project is to design code that can help the user find specific sequence of terms in long expressions derived from string amplitudes.\\
+\\
+String theory is considered the best possible candidate so far to constitute a theory of everything. Within the same formalism, all the fundamental forces, including gravity, \footnote{Gravity is the most ellusive force to quantise. Plenty of problems arise when quantising from the classical description.} are quantised. When some specific limit behaviour is approached (i.e. the desired energetic scale to describe is low compared to some parameters\footnote{The scale of the string $\textit{l}_{s} \rightarrow 0$, which is analogous to not have enough energy to resolve how to atoms interact and we just see two little balls clashing.} in the general definition) one can recover semi-classical description of well known fields (i.e Gravity, Electromagnetism, etc) .\\
+\\
+One of those phenomenum we are interested in is the dynamics of the Universe. \footnote{Classical cosmology is the disciple which studies this. It makes use of Einstein's General Relativity to describe the evolution of the Universe. Up to some extend, it gives the most accurate description we have of it.} The discipline in charge of this study from a stringy perspective is String Cosmology.\\
+\\
+The main aim of String Cosmology is to take String Theory and perform a gentle transition to derive a semi-classical description of usual cosmology. In principle, this can be done at tree level (i.e. Just looking at the most relevant contributions of the interaction) but... not in the case we are interested in. Here, one needs to account for sub-leading corrections (i.e. not so relevant, yet not neglegible contributions) to achieve one of the fundamental values of classical cosmology to be non 0. $\Lambda$, the cosmological constant. This constant is a fixed\footnote{Or maybe not. This is hot topic research right now.} positive value in Eintein's General Relativity equations to account for \textbf{the expansion of the Universe.}\\
+\\
+These aforamentioned corrections can be obtained from all possible interaction of different strings at sub-leading order. In the case we are interested in, it results to be around 7000 terms + all possible permutations for some values inside them. At this point, we need to ask a computer to identify which terms will contribute to our task, imposing a set of rules to localise them in such a long list. This is what these lines of code aim to do.\\
+\\
+\textcolor{red}{RETHINK AND IMPROVE INTRODUCTION. I GUESS I CAN DO IT BETTER}
+
+\section{Description of Problem}
+
+The starting point is the file called \textit{Loooong.csv} in the folder \textit{Code}. This file contains all possible sub-leading contributions from string theory for a given interaction of specific set of strings.\footnote{Three closed strings, that can be mapped to six open ones.} From this long list, we are only interested on some terms with a specific given form as:
+
+\begin{equation}\label{eq: Polarisation}
+    \epsilon_{1}.\epsilon_{2}\:\epsilon_{3}.\epsilon_{4}\:\epsilon_{5}.\epsilon_{6},
+\end{equation}
+where $\epsilon_{i}$ stands for the polarisation of the strings. Not only this form, but any other possible permutation of previous term is relevant for the aforamentioned computation. Furthermore, permutation rules affecting $\epsilon_{i}$ will affect other variables in the expression, which our code has to take account for.
+
+\section{Method}
+
+A rough sketch of the method to identify those terms is as follows:
+
+\begin{enumerate}
+    \item Load the Amplitude expression into python from the \textit{.csv} file.
+    \item Chop the string into different terms, separated by $\pm$ signs.
+    \item Run a function that identifies the desired expression (\ref{eq: Polarisation}). If this substring is part of the term, store that term in a new list.
+    \item Perform permutations, accounting for the transformation rules of other variables.
+    \item Repeat from step 1.
+    \item Output all possible terms to another \textit{.csv} file for further work on other programs.
+\end{enumerate}
+
+\end{document}
