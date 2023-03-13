@@ -44,7 +44,7 @@ class Chop_Tools(object):
         for j in range(len(Split_Pieces_in_Terms)): # These 2 loops are to split each piece into variables e_{i} and similar. It also creates a list where all the variables will be nested, which correspond to the term j.
             term_j= list()
             for i in range(len(Split_Pieces_in_Terms[j])):
-                bb=Split_Pieces_in_Terms[j][i].split('.')
+                bb = Split_Pieces_in_Terms[j][i].split('.')
                 for elem in bb:
                     term_j.append(elem)
             Split_Final.append(term_j)

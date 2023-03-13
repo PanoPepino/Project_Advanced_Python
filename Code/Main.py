@@ -2,6 +2,7 @@ import numpy as np # importing numpy
 import time # To check how much time it takes to perform steps. We are dealing with plenty of objects
 from itertools import permutations
 import Amplitude_Tools #My package to disect and play with amplitudes
+import re
 
 ## Material to use and definitions
 
@@ -31,6 +32,20 @@ Relevant_Terms.Looking_for_e_Specific(Polarisation, 'A123456.txt')
 # - Create a permutator that applies the basic substitution rules on Relevant terms.
 # - Extract into new files each sub_relevant term for different permutations of the amplitude.
 # - Cast all them into the same file.
+
+My_Replacements= {
+    "ss1" : "s12",
+    "ss2" : "s23",
+    "ss3" : "s34",
+    "ss4" : "s45",
+    "ss5" : "s56",
+    "ss6" : "s16",
+    "tt1" : "(s12-s34+s56)",
+    "tt2" : "(-s12+s34+s56)",
+    "tt3" : "(s12+s34-s56)",
+  } 
+Relevant_Terms_Modified = Amplitude_Tools.Replacetor('Relevant_Terms.txt', My_Replacements, 'Relevant_Terms_Modified.txt')
+
 
 
 
