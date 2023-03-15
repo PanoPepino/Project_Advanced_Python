@@ -11,9 +11,9 @@ class Permutator (object):
     1) Eats a set of relevant terms.
     2) Eats an order in the permutations
     3) Perform the permutation in each of the relevant terms
-    4) Spits out a file with only those terms that match the permutation.
+    4) Spits out an array with the permuted terms
 
-    CONTINUE EXPLAINING
+    It has two methods: Replacement_Dict_Creator and Permuting. The important one is permuting.
     """
     def __init__(self, Name_File_Input):
         self.Name_File_Input = Name_File_Input

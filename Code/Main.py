@@ -20,7 +20,7 @@ General_Amplitude.Looking_for_e_General(Polarisation)
 
 Relevant_Terms = Amplitude_Tools.Read_Amplitude_Func("Relevant_Terms.txt")
 Relevant_Terms = Amplitude_Tools.Selector(Relevant_Terms)
-Relevant_Terms.Looking_for_e_Specific(Polarisation, 'A123456.txt')
+
 
 # To do:
 # - Create a permutator that applies the basic substitution rules on Relevant terms.
@@ -31,9 +31,8 @@ Relevant_Terms.Looking_for_e_Specific(Polarisation, 'A123456.txt')
 Terms_to_Permute_Try = Amplitude_Tools.Permutator('Relevant_Terms.txt')
 Permuted_Terms = Terms_to_Permute_Try.Permuting('136452')
 Try = Amplitude_Tools.Selector(Terms_to_Permute_Try)
-Try.Looking_for_e_Specific_2(Permuted_Terms, Polarisation, 'Try_Shit.txt')
+cc=Try.Looking_for_Specific_Configuration(Permuted_Terms, Polarisation, 'Try_Shit.txt')
 
-print(Permuted_Terms[1])
 
 
 

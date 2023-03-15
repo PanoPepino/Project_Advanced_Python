@@ -15,4 +15,4 @@ Basic_Replacements= {
     "tt3" : "(s12+s34-s56)",
   }
 
-Polarisation = ['e1', 'e2', 'e3', 'e4','e5','e6'] # The substring to look at
+Polarisation = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6'] # The substring to look at
