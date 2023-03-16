@@ -2,7 +2,7 @@ import numpy as np
 
 def Read_Amplitude_Func(file):
     """
-    This function eats the "name" (use "" and the name of file inside) of a .csv or .txt file and spits out a string that the system can interpret correctly.
+    This function eats file.csv or .txt file and spits out a string that the system can interpret correctly.
     """
 
     Data= np.loadtxt(fname=file, #Name of the file

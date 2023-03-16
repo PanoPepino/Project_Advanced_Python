@@ -3,6 +3,7 @@ from .Selector import *
 from .Chopper import *
 from .Definitions import *
 from .Replacetor import *
+from .Read_Amplitude import *
 
 class Permutator (object):
     """
@@ -15,10 +16,10 @@ class Permutator (object):
 
     It has two methods: Replacement_Dict_Creator and Permuting. The important one is permuting.
     """
+
     def __init__(self, Name_File_Input):
         self.Name_File_Input = Name_File_Input
-        self.Terms = Read_Amplitude_Func(Name_File_Input)
-        self.To_Replace = Chop_Tools(self.Terms).Split_Monster(0)
+        self.To_Replace = Chop_Tools(Name_File_Input).Split_Monster(0)
     
     def Replacement_Dict_Creator(self, Desired_Permutation):
         """
@@ -43,7 +44,7 @@ class Permutator (object):
 
 
 
-    def Permuting (self, Desired_Permutation):
+    def Permuting (self, Desired_Permutation, Name_file_extension):
         """
         This function eats the desired permutation string and transform the Monster input (Which will be read from Name file input) according to defined rules.
         """
@@ -57,7 +58,12 @@ class Permutator (object):
         Second_Replacement = Replacetor(First_Replacement, Creating_Dictionaries[0])
         Third_Replacement = Replacetor(Second_Replacement, Creating_Dictionaries[1])
 
-        return self.To_Replace[0],Third_Replacement
+        with open(Name_file_extension, 'w') as f:
+                        for item1, item2 in zip(self.To_Replace[0], Third_Replacement):
+                            f.writelines(item1)
+                            f.writelines(item2)
+                            f.write('\n')
+
 
 
 

@@ -15,9 +15,9 @@ def Replacetor(Input_List, Replacements):
    Replaced_List = list()
    
    for item in Input_List:
-      # Create a regular expression  from the dictionary keys
+      # Create a regular expression from the dictionary
       regex = re.compile("(%s)" % "|".join(map(re.escape, Replacements.keys())))
-      #For each match, look-up corresponding value in dictionary
+      # For each match, look-up corresponding value in dictionary
       Replaced_Term = regex.sub(lambda mo: Replacements[mo.string[mo.start():mo.end()]], str(item))
       Replaced_List.append(str(Replaced_Term))
 

@@ -1,5 +1,6 @@
 import numpy as np # importing numpy
 from .Chopper import *
+from .Read_Amplitude import *
 
 
 class Selector(Chop_Tools):
@@ -8,8 +9,9 @@ class Selector(Chop_Tools):
 
     It has several methods:
 
-    Looking_for_e_General
+    Looking_for_e_General, Looking_for_Specific_Configuration
     """
+
     def __init__(self, Monster):
         Chop_Tools.__init__(self, Monster) #Inherit from Chop_Tools
         self.Monster = Monster
@@ -41,7 +43,7 @@ class Selector(Chop_Tools):
                             f.writelines(item2)
                             f.write('\n')
 
-    def Looking_for_Specific_Configuration(self, List_Input, Reference, Name_file_extension):
+    def Looking_for_Specific_Configuration(self, Name_file_extension, Reference):
         """
         This function eats:
         1) an input list, which will normally come from the Permutator class. 
@@ -53,20 +55,11 @@ class Selector(Chop_Tools):
         Finally, all these selected terms will be printed out in the file whose name has been indicated in the input of the function.
         """
         
-        Split_Pieces_in_Terms = list()
         Split_Final = list()
         Output = np.array([])
 
-        for i in range(len(List_Input[1])): # Loop to split each term into the pieces separated by multiplication
-            Split_Pieces_in_Terms.append(List_Input[1][i].split('*'))
-    
-        for j in range(len(Split_Pieces_in_Terms)): # These 2 loops are to split each piece into variables e_{i} and similar. It also creates a list where all the variables will be nested, which correspond to the term j.
-            term_j= list()
-            for i in range(len(Split_Pieces_in_Terms[j])):
-                bb = Split_Pieces_in_Terms[j][i].split('.')
-                for elem in bb:
-                    term_j.append(elem)
-            Split_Final.append(term_j)
+        Split_Final = Chop_Tools(Name_file_extension).Split_Monster(2)[1]# Split up to each variable.
+        Sequence_To_Choose = Chop_Tools(Name_file_extension).Split_Monster(0) # Split up to terms.
 
         for i in range(len(Split_Final)):
             Chosen_ones_output = np.array([])
@@ -77,7 +70,7 @@ class Selector(Chop_Tools):
                 Something = Chosen_ones_output.ravel().tolist()
 
                 if Something == Reference: # If the piece being read coincides with the reference one, add it to chosen ones.
-                    Output = np.append(Output,(List_Input[0][i],List_Input[1][i]))
+                    Output = np.append(Output,(Sequence_To_Choose[0][i],Sequence_To_Choose[1][i]))
                     with open(Name_file_extension, 'w') as f:
                         for item1, item2 in zip(Output[::2], Output[1::2]):
                             f.writelines(item1)

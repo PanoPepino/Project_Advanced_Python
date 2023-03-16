@@ -1,30 +1,28 @@
 import numpy as np # importing numpy
-
+from .Read_Amplitude import *
 
 class Chop_Tools(object):
     """
-    This class will allow us to chop and check that everything works by chopping and comparing. The only argument that eats is the monster (polynomial) to be chopped.
+    This class eats a file, which is read by the Read_Amplitude_Func. This will convert everything there in a string of text,which will then allow us to chop it as deep as we want. We can also check that everything works by chopping and comparing. The only argument that eats is the monster (polynomial) to be chopped.
 
     It has several methods:
 
     Split_Monster, Check_Right_Split.
     """
 
-    def __init__(self, Monster):
-        self.Monster= Monster
-
-    def Split_Monster(self, number): 
+    def __init__(self, Name_File_Input): #The only mandatory input for this class.
+        self.Name_File_Input = Name_File_Input
+        self.Monster = Read_Amplitude_Func(Name_File_Input)
         
+    def Split_Monster(self, number): 
         """
-        This function will eat the Monster as argument of the class and it will chop it into smaller lists depending on the selected number (the extra argument) as follows:
+        This function will eat the Monster (string of text) and it will chop it into smaller lists depending on the selected number (the extra argument) as follows:
 
         number == 0, it will chop each term of the string and spit out signs in 1 array and terms in other.
-
         number == 1, it will chop further the terms and divide in multiplication.
-
         number == 2, it will go further and isolate each variable in each term.
         
-        It also creates empty lists. Depending on the number you have chosen, it will one them fill it in and return it.
+        It also creates an empty list, where the chopped string will be storage.
         """
 
         Split_Terms=np.array([]) # Empty array to split further those minuses
