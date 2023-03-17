@@ -1,6 +1,10 @@
 Amplitude Term Hunt
 
-This repository contains two folders:
+This repository contains:
 
-- Code, which is a collection of .py files used to find substrings within a long string of data.
-- Concepts, which contains a .pdf file where the project is described in more depth
+- Package called Amplitude_Tools, which is a collection of .py file that will identify desired terms of amplitude expressions in string theory.
+
+- An example file called Main.py, with a description of each step to achieve the result.
+- A folder with .txt files that contain all possible permutations described in the Main.py file.
+- A .pdf file with further description on the theoretical physics background of this project.
+- This .txt file that you are reading right now.

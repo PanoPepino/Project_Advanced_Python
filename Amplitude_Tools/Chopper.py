@@ -1,7 +1,7 @@
 import numpy as np # importing numpy
 from .Read_Amplitude import *
 
-class Chop_Tools(object):
+class Chopper(object):
     """
     This class eats a file, which is read by the Read_Amplitude_Func. This will convert everything there in a string of text,which will then allow us to chop it as deep as we want. We can also check that everything works by chopping and comparing. The only argument that eats is the monster (polynomial) to be chopped.
 
@@ -25,17 +25,18 @@ class Chop_Tools(object):
         It also creates an empty list, where the chopped string will be storage.
         """
 
-        Split_Terms=np.array([]) # Empty array to split further those minuses
-        Split_Pieces_in_Terms=list()
-        Split_Final=list() # Empty array to split further those minuses
-        Signs_match=np.array(['']) # Array whose 0th entry is a space, will go in front of first term of sequence.
+        Split_Terms = np.array([]) # Empty array to split further those minuses
+        Split_Pieces_in_Terms = list()
+        Split_Final = list() # Empty array to split further those minuses
+        Signs_match = np.array([]) # Array whose 0th entry is a space, will go in front of first term of sequence.
 
         #Important to notice that I wrote self.Monster. This will look at the eaten argument in the class. No need to input it again.
 
-        Split_First_Plus = self.Monster.split('+') # Split will separate previous string into only terms for each plus that reads through
-        for i in range(len(Split_First_Plus)):# Loop that takes care of minuses
-            Split_Terms=np.append(Split_Terms,Split_First_Plus[i].split('-'))
- 
+        for i in range(len(self.Monster)):# Loop that takes care of minuses
+            Signs_match = np.append(Signs_match, self.Monster[i][0])
+            Remove_Powers = str(self.Monster[i][1]).replace('^-','$')
+            Split_Terms = np.append(Split_Terms, Remove_Powers)
+        
         for i in range(len(Split_Terms)): # Loop to split each term into the pieces separated by multiplication
             Split_Pieces_in_Terms.append(Split_Terms[i].split('*'))
     
@@ -46,15 +47,6 @@ class Chop_Tools(object):
                 for elem in bb:
                     term_j.append(elem)
             Split_Final.append(term_j)
-
-        # This loop takes care of the signs in the string. If there is a - or a + will create entries of an array with those signs.
-
-        for j,value in enumerate(self.Monster): # As we use enumerate (create pairs in the string), we need to add the value counter
-            sub_string = self.Monster[j:1+j] # Piece to be read
-            if sub_string == '-': # If there is a - in the previous sub_string, add - to the array
-                Signs_match=np.append(Signs_match,"-")
-            elif sub_string == '+': # Same as before, but now +
-                Signs_match=np.append(Signs_match,"+")
 
         if number  == 0:
             return [Signs_match,Split_Terms]

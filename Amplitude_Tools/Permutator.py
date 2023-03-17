@@ -19,7 +19,7 @@ class Permutator (object):
 
     def __init__(self, Name_File_Input):
         self.Name_File_Input = Name_File_Input
-        self.To_Replace = Chop_Tools(Name_File_Input).Split_Monster(0)
+        self.To_Replace = Chopper(Name_File_Input).Split_Monster(0)
     
     def Replacement_Dict_Creator(self, Desired_Permutation):
         """
@@ -61,8 +61,11 @@ class Permutator (object):
         with open(Name_file_extension, 'w') as f:
                         for item1, item2 in zip(self.To_Replace[0], Third_Replacement):
                             f.writelines(item1)
+                            f.writelines(' ')
                             f.writelines(item2)
                             f.write('\n')
+
+        
 
 
 

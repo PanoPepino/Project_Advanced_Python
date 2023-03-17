@@ -3,7 +3,7 @@ from .Chopper import *
 from .Read_Amplitude import *
 
 
-class Selector(Chop_Tools):
+class Selector(Chopper):
     """
     This class will track down all possible terms in a long chopped sequence (This inherits from Chop_Tools, so it can chop, compare and then, select), and will identify which terms contain a sub-string of parameters. Every term that meets this requirement will be stored in an output array.
 
@@ -13,7 +13,7 @@ class Selector(Chop_Tools):
     """
 
     def __init__(self, Monster):
-        Chop_Tools.__init__(self, Monster) #Inherit from Chop_Tools
+        Chopper.__init__(self, Monster) #Inherit from Chop_Tools
         self.Monster = Monster
 
     def Looking_for_e_General(self, Reference):
@@ -27,8 +27,8 @@ class Selector(Chop_Tools):
         Chosen_ones = np.array([])
         Chosen_ones_output= np.array([])
     
-        Split_Final = Chop_Tools(self.Monster).Split_Monster(2)[1]# Split up to each variable.
-        Sequence_To_Choose = Chop_Tools(self.Monster).Split_Monster(0) # Split up to terms.
+        Split_Final = Chopper(self.Monster).Split_Monster(2)[1]# Split up to each variable.
+        Sequence_To_Choose = Chopper(self.Monster).Split_Monster(0) # Split up to terms.
 
         for i in range(len(Split_Final)):
             for j,value in enumerate(Split_Final[i]): # As we use enumerate (create pairs in the string), we need to add the value counter. 
@@ -37,9 +37,10 @@ class Selector(Chop_Tools):
                 if sub_string == Reference: # If the piece being read coincides with the reference one, add it to chosen ones.
                     Chosen_ones = np.append(Chosen_ones,Sequence_To_Choose[1][i])
                     Chosen_ones_output = np.append(Chosen_ones_output,(Sequence_To_Choose[0][i],Sequence_To_Choose[1][i]))
-                    with open('Relevant_Terms.txt', 'w') as f:
+                    with open('Sequences/Relevant_Terms.txt', 'w') as f:
                         for item1, item2 in zip(Chosen_ones_output[::2], Chosen_ones_output[1::2]):
                             f.writelines(item1)
+                            f.writelines(' ') # So the Read_Function can understand each space with a new entry.
                             f.writelines(item2)
                             f.write('\n')
 
@@ -58,8 +59,8 @@ class Selector(Chop_Tools):
         Split_Final = list()
         Output = np.array([])
 
-        Split_Final = Chop_Tools(Name_file_extension).Split_Monster(2)[1]# Split up to each variable.
-        Sequence_To_Choose = Chop_Tools(Name_file_extension).Split_Monster(0) # Split up to terms.
+        Split_Final = Chopper(Name_file_extension).Split_Monster(2)[1]# Split up to each variable.
+        Sequence_To_Choose = Chopper(Name_file_extension).Split_Monster(0) # Split up to terms.
 
         for i in range(len(Split_Final)):
             Chosen_ones_output = np.array([])
@@ -74,6 +75,7 @@ class Selector(Chop_Tools):
                     with open(Name_file_extension, 'w') as f:
                         for item1, item2 in zip(Output[::2], Output[1::2]):
                             f.writelines(item1)
+                            f.writelines(' ')
                             f.writelines(item2)
                             f.write('\n')
     
