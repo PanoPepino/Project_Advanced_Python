@@ -27,8 +27,8 @@ class Permutator (object):
         """
 
         Perm = [*Desired_Permutation]
-        Momenta = ['s12','s23', 's34', 's45', 's56','s16']
-
+        Momenta = ['s12', 's23', 's34', 's45', 's56','s16']
+        
         Dict_Perm_Pol = {}
         Dict_Perm_Mom = {}
 
@@ -39,6 +39,10 @@ class Permutator (object):
             Entries = [Perm[j], Perm[(j+1) % len(Momenta)]]
             Entries.sort()
             Dict_Perm_Mom.update({Momenta[j] :'s' + str(Entries[0]) + str(Entries[1])})
+        
+        Dict_Perm_Mom.update({'s13': 's' + str(Perm[0]) + str(Perm[2])})
+        Dict_Perm_Mom.update({'s24': 's' + str(Perm[1]) + str(Perm[3])})
+        Dict_Perm_Mom.update({'s35': 's' + str(Perm[2]) + str(Perm[4])})
 
         return Dict_Perm_Pol, Dict_Perm_Mom
 
@@ -57,9 +61,10 @@ class Permutator (object):
         # With those two dictionaries in hand, time to replace again.
         Second_Replacement = Replacetor(First_Replacement, Creating_Dictionaries[0])
         Third_Replacement = Replacetor(Second_Replacement, Creating_Dictionaries[1])
+        Fourth_Replacement = Replacetor(Third_Replacement, Extra_Replacements)
 
         with open(Name_file_extension, 'w') as f:
-                        for item1, item2 in zip(self.To_Replace[0], Third_Replacement):
+                        for item1, item2 in zip(self.To_Replace[0], Fourth_Replacement):
                             f.writelines(item1)
                             f.writelines(' ')
                             f.writelines(item2)

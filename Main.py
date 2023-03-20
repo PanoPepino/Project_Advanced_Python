@@ -15,7 +15,12 @@ General_Amplitude.Looking_for_e_General(Polarisation)
 #2a Take all those terms and permute them under some rules (calling Permutator). Not only the e_{i} terms will get permuted, but also s_{ij} terms, as they have to do with the momenta of the strings. So string 2 will no longer be number 2 after permuting. Hence, s_{ij} is affected. Let's try permuting under the change '136452'.
 
 Terms_to_Permute= Amplitude_Tools.Permutator('Sequences/Relevant_Terms.txt')
+<<<<<<< HEAD
 Terms_to_Permute.Permuting('136452', 'Sequences/PT_Example.txt')
+=======
+print(Terms_to_Permute.Replacement_Dict_Creator('134625'))
+Terms_to_Permute.Permuting('134625', 'Sequences/PT_Example.txt')
+>>>>>>> c28bb75 (Further changes to accomodate results to those of my supervisor (further relations of variables))
 
 
 #2b Now that we have permuted all those relevant terms, we have to select only some of them. We call the Selector tool again.
