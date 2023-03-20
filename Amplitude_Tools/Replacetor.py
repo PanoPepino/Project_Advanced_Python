@@ -1,6 +1,6 @@
 import numpy as np
 import re
-from .Read_Amplitude import *
+from .Important_Functions import *
 from .Chopper import *
 
 def Replacetor(Input_List, Replacements):

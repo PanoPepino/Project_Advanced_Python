@@ -1,6 +1,6 @@
 import numpy as np # importing numpy
 from .Chopper import *
-from .Read_Amplitude import *
+from .Important_Functions import *
 
 
 class Selector(Chopper):
@@ -75,13 +75,9 @@ class Selector(Chopper):
                     with open(Name_file_extension, 'w') as f:
                         for item1, item2 in zip(Output[::2], Output[1::2]):
                             f.writelines(item1)
-<<<<<<< HEAD
                             f.writelines(' ')
-                            f.writelines(item2)
-                            f.write('\n')
-=======
                             f.writelines(item2.replace('$','^-'))
->>>>>>> c28bb75 (Further changes to accomodate results to those of my supervisor (further relations of variables))
+                            f.write('\n')
     
 
                     

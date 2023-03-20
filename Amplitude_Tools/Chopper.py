@@ -1,5 +1,5 @@
 import numpy as np # importing numpy
-from .Read_Amplitude import *
+from .Important_Functions import *
 
 class Chopper(object):
     """
