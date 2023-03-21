@@ -37,7 +37,10 @@ def Replacetor(Input_List, Replacements):
 def Sub_Permutator (String_Input):
     """
     This function will eat a string input and choose its second, third and fourth entry. Then, it will permute these 3 entries and create sub-permutation strings associated with F-terms, that will be substituted later.
+
+    It spits out the subpermutation string and the associated F_term.
     """
+
     Sub_Perm = []
     F_Perm = []
     Perm = [*String_Input]

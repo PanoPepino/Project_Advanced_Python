@@ -31,14 +31,25 @@ Combinations = ['136452', '146352','134625', '143625', '134652', '143652'] # Imp
 
 for item in Combinations:
     Terms_to_Permute= Amplitude_Tools.Permutator('Sequences/Relevant_Terms.txt')
-    Location = 'Sequences/PT_' + item + '.txt'
+    Location = 'Sequences/Tree_Level/PT_' + item + '.txt'
     Terms_to_Permute.Permuting(item, Location)
     Try = Amplitude_Tools.Selector(Location)
     Try.Looking_for_Specific_Configuration(Location, Polarisation)
 
 # If one now goes to the folder Sequences, there should be six new files. Inside them, only those terms that are relevant for the desired computation.
+pp= []
+for item in Combinations:
+    Terms_to_Permute= Amplitude_Tools.Permutator('Sequences/Relevant_Terms.txt')
+    Extra_Sub_Perm = Terms_to_Permute.Permuting_Subleading(item)
+    for jtem in Extra_Sub_Perm:
+        Location = 'Sequences/PT_' + item + '/' + 'AF_' + jtem + '.txt'
+        Caca = Amplitude_Tools.Selector(Location)
+        Caca.Looking_for_Specific_Configuration(Location, Polarisation)
+        
+#Pene = Amplitude_Tools.Selector('Sequences/PT_146352/AF_Try.txt')    
+#Pene.Looking_for_Specific_Configuration('Sequences/PT_146352/AF_Try.txt', Polarisation)
 
-
+    
 
 
 

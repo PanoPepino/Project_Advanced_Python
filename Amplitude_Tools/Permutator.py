@@ -3,6 +3,7 @@ from .Selector import *
 from .Chopper import *
 from .Definitions import *
 from .Important_Functions import *
+import os
 
 class Permutator (object):
     """
@@ -52,8 +53,17 @@ class Permutator (object):
         This function eats the desired permutation string and transform the Monster input (Which will be read from Name file input) according to defined rules.
         """
 
-        Second_Order_Desired_Perm = Sub_Permutator(Desired_Permutation)[0]
-        F_Terms = Sub_Permutator(Desired_Permutation)[1]
+        # Directory
+        directory = 'Tree_Level'
+  
+        # Parent Directory path
+        parent_dir = "/Users/Panizo/CloudDocs/University/Ph.D./Subjects/Advanced_Python_stuff (3)/Project_Advanced_Python/Sequences"
+  
+        # Path
+        path = os.path.join(parent_dir, directory)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
         # Eat the txt and replace ss and tt with basic stuff.
         First_Replacement= Replacetor(self.To_Replace[1], Basic_Replacements)
 
@@ -74,28 +84,54 @@ class Permutator (object):
                             f.writelines(item2)
                             f.write('\n')
 
-    def Permuting_Subleading (self, Desired_Permutation, Name_file_extension):
+    def Permuting_Subleading (self, Desired_Permutation):
         """
         This function eats the desired permutation string and transform the Monster input (Which will be read from Name file input) according to defined rules.
         """
-        # Eat the txt and replace ss and tt with basic stuff.
-        First_Replacement= Replacetor(self.To_Replace[1], Basic_Replacements)
 
+        # Directory
+        directory = 'PT_' + Desired_Permutation
+  
+        # Parent Directory path
+        parent_dir = "/Users/Panizo/CloudDocs/University/Ph.D./Subjects/Advanced_Python_stuff (3)/Project_Advanced_Python/Sequences"
+  
+        # Path
+        path = os.path.join(parent_dir, directory)
+        if not os.path.exists(path):
+            os.makedirs(path)
 
-        # Now, Given the Desired permutation, Create two dictionaries, one for polarisation changes and another one for momenta
-        Creating_Dictionaries = self.Replacement_Dict_Creator(Desired_Permutation)
+        Second_Order_Desired_Perm = Sub_Permutator(Desired_Permutation)[0]
+        F_terms = Sub_Permutator(Desired_Permutation)[1]
 
-        # With those two dictionaries in hand, time to replace again.
-        Second_Replacement = Replacetor(First_Replacement, Creating_Dictionaries[0])
-        Third_Replacement = Replacetor(Second_Replacement, Creating_Dictionaries[1])
-        Fourth_Replacement = Replacetor(Third_Replacement, Extra_Replacements)
+        for k in range(len(Second_Order_Desired_Perm)):
+            Add_F_Term = []
+            for i in range(len(self.To_Replace[1])):
+                Plus_F = self.To_Replace[1][i] + '*' + F_terms[k] 
+                Add_F_Term.append(Plus_F)
 
-        with open(Name_file_extension, 'w') as f:
-                        for item1, item2 in zip(self.To_Replace[0], Fourth_Replacement):
-                            f.writelines(item1)
-                            f.writelines(' ')
-                            f.writelines(item2)
-                            f.write('\n')
+            # Eat the txt and replace ss and tt with basic stuff.
+            Zeroth_Replacement = Replacetor(Add_F_Term, F_Replacements)
+            First_Replacement= Replacetor(Zeroth_Replacement, Basic_Replacements)
+
+            # Now, Given the Desired permutation, Create two dictionaries, one for polarisation changes and another one for momenta
+            Creating_Dictionaries = self.Replacement_Dict_Creator(Second_Order_Desired_Perm[k])
+
+            # With those two dictionaries in hand, time to replace again.
+            Second_Replacement = Replacetor(First_Replacement, Creating_Dictionaries[0])
+            Third_Replacement = Replacetor(Second_Replacement, Creating_Dictionaries[1])
+            Fourth_Replacement = Replacetor(Third_Replacement, Extra_Replacements)
+
+            # Creating the Folder and the file
+            Where = path + '/' + 'AF_' + Second_Order_Desired_Perm[k] + '.txt'
+
+            with open(Where, 'w') as f:
+                  for item1, item2 in zip(self.To_Replace[0], Fourth_Replacement):
+                    f.writelines(item1)
+                    f.writelines(' ')
+                    f.writelines(item2)
+                    f.write('\n')
+
+        return Second_Order_Desired_Perm
 
         
 

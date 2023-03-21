@@ -56,8 +56,15 @@ class Selector(Chopper):
         Finally, all these selected terms will be printed out in the file whose name has been indicated in the input of the function.
         """
         
-        Split_Final = list()
         Output = np.array([])
+        Pol_2=[[['e1', 'e2'], ['e3', 'e4'], ['e5', 'e6']]]
+        aa = list(itertools.permutations(Pol_2))
+        Pene = []
+        for item in aa:
+            bb= np.array(item)
+            tt=bb.flatten()
+            tt= list(tt)
+            Pene.append(tt)
 
         Split_Final = Chopper(Name_file_extension).Split_Monster(2)[1]# Split up to each variable.
         Sequence_To_Choose = Chopper(Name_file_extension).Split_Monster(0) # Split up to terms.
@@ -70,7 +77,7 @@ class Selector(Chopper):
                 Chosen_ones_output = np.append(Chosen_ones_output,sub_string)
                 Something = Chosen_ones_output.ravel().tolist()
 
-                if Something == Reference: # If the piece being read coincides with the reference one, add it to chosen ones.
+                if Something in Pene: # If the piece being read coincides with the reference one, add it to chosen ones.
                     Output = np.append(Output,(Sequence_To_Choose[0][i],Sequence_To_Choose[1][i]))
                     with open(Name_file_extension, 'w') as f:
                         for item1, item2 in zip(Output[::2], Output[1::2]):
@@ -78,6 +85,10 @@ class Selector(Chopper):
                             f.writelines(' ')
                             f.writelines(item2.replace('$','^-'))
                             f.write('\n')
+
+            
+                 
+                
     
 
                     

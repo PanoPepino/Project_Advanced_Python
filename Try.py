@@ -1,5 +1,6 @@
 import numpy as np
 import itertools
+import os
 
 
 
@@ -18,7 +19,28 @@ def Sub_Permutator (String_Input):
     
     return Sub_Perm, F_Perm
 
-print(Sub_Permutator('136452'))
+Polarisation = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6']
+
+Pol_2 = [['e1', 'e2'], ['e3', 'e4'], ['e5', 'e6']]
+
+aa = list(itertools.permutations(Pol_2))
+Pene = []
+for item in aa:
+    bb= np.array(item)
+    tt=bb.flatten()
+    tt= list(tt)
+    Pene.append(tt)
+
+if Polarisation in Pene:
+    print('Yes')
+
+
+
+
+
+
+
+
 
     
 

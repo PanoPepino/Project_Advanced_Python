@@ -23,13 +23,13 @@ Extra_Replacements = { # To simplify even further.
     "s45" : "s36",
     }
 
-F_terms = {
-    "F234" : "-Zeta[2](ss4ss5+ss1ss6-ss4tt1-ss1tt3+tt1tt3)",
-    "F324" : "-Zeta[2]s13(s23-s16+tt3)",
-    "F432" : "-Zeta[2]s14s25",
-    "F342" : "Zeta[2]s13s25",
-    "F423" : "Zeta[2]s14s35",
-    "F234" : "-Zeta[2]s35(s34-s56+tt1)"
+F_Replacements = {
+    "F234" : "mZeta[2]*(ss4*ss5+ss1*ss6-ss4*tt1-ss1*tt3+tt1*tt3)",
+    "F324" : "mZeta[2]*s13(ss2-ss6+tt3)",
+    "F432" : "mZeta[2]*s14*s25",
+    "F342" : "Zeta[2]*s13*s25",
+    "F423" : "Zeta[2]*s14*s35",
+    "F234" : "mZeta[2]*s35*(ss3-ss5+tt1)"
 }
 
 Polarisation = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6'] # The substring to look at
