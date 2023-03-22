@@ -21,15 +21,19 @@ Extra_Replacements = { # To simplify even further.
     "s65" : "s56", 
     "s43" : "s34", 
     "s45" : "s36",
+    "s32" : "s23",
+    "s42" : "s24",
+    "s63" : "s36",
+    "s64" : "s46"
     }
 
-F_Replacements = {
+F_Replacements = { # Replacements for the F-functions that correspond to 1-loop corrections in Oliver's paper
     "F234" : "mZeta[2]*(ss4*ss5+ss1*ss6-ss4*tt1-ss1*tt3+tt1*tt3)",
     "F324" : "mZeta[2]*s13(ss2-ss6+tt3)",
     "F432" : "mZeta[2]*s14*s25",
     "F342" : "Zeta[2]*s13*s25",
     "F423" : "Zeta[2]*s14*s35",
-    "F234" : "mZeta[2]*s35*(ss3-ss5+tt1)"
+    "F243" : "mZeta[2]*s35*(ss3-ss5+tt1)"
 }
 
 Polarisation = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6'] # The substring to look at

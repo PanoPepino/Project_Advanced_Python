@@ -7,7 +7,7 @@ class Selector(Chopper):
     """
     This class will track down all possible terms in a long chopped sequence (This inherits from Chop_Tools, so it can chop, compare and then, select), and will identify which terms contain a sub-string of parameters. Every term that meets this requirement will be stored in an output array.
 
-    It has several methods:
+    It has two methods:
 
     Looking_for_e_General, Looking_for_Specific_Configuration
     """
@@ -44,20 +44,18 @@ class Selector(Chopper):
                             f.writelines(item2)
                             f.write('\n')
 
-    def Looking_for_Specific_Configuration(self, Name_file_extension, Reference):
+    def Looking_for_Specific_Configuration(self, Name_file_extension):
         """
-        This function eats:
-        1) an input list, which will normally come from the Permutator class. 
-        2) A reference, which is the substring to look at. For example, my desired polarisation array.
-        3) The name of the file where you want to write down those terms that match your requirements.
+        This function eats a file.
 
-        The input list is then chopped down to all variables. They are written in the Split_Final array (quite similar to the chopper tool) Then, each term is inspected up to the first 6 entries and sorted. This is due to the fact that combinations of e.e (Polarisations in this case) are symmetric. So it does not matter if e1.e2 or e2.e1. They are the same. When this sorting by pairs has been performed, that term is then compared to the desired Reference. If they match, the non-chopped term where it can from will be stored in a selected list of chosen terms.
+        The input file is then chopped down to all variables. They are written in the Split_Final array (quite similar to the chopper tool) Then, each term is inspected up to the first 6 entries and sorted. This is due to the fact that combinations of e.e (Polarisations in this case) are symmetric. So it does not matter if e1.e2 or e2.e1. They are the same. When this sorting by pairs has been performed, that term is then compared to the desired Reference. If they match, the non-chopped term where it can from will be stored in a selected list of chosen terms.
 
         Finally, all these selected terms will be printed out in the file whose name has been indicated in the input of the function.
         """
         
         Output = np.array([])
-        Pol_2=[[['e1', 'e2'], ['e3', 'e4'], ['e5', 'e6']]]
+        
+        Pol_2 = [['e1', 'e2'], ['e3', 'e4'], ['e5', 'e6']]
         aa = list(itertools.permutations(Pol_2))
         Pene = []
         for item in aa:
@@ -85,6 +83,7 @@ class Selector(Chopper):
                             f.writelines(' ')
                             f.writelines(item2.replace('$','^-'))
                             f.write('\n')
+        
 
             
                  

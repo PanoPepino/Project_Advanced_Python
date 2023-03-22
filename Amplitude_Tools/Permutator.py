@@ -9,12 +9,14 @@ class Permutator (object):
     """
     This class does the following:
 
-    1) Eats a set of relevant terms.
-    2) Eats an order in the permutations
-    3) Perform the permutation in each of the relevant terms
-    4) Spits out an array with the permuted terms
+    1) Eats a file and read with Read_Amplitude_Func.
+    2) Eats an order in the permutations.
+    3) Perform the permutation in each of the relevant terms.
+    4) It returns an array with the permuted terms.
 
-    It has two methods: Replacement_Dict_Creator and Permuting. The important one is permuting.
+    Three methods: 
+    
+    Replacement_Dict_Creator, Permuting, Permuting_Subleading.
     """
 
     def __init__(self, Name_File_Input):
@@ -24,11 +26,12 @@ class Permutator (object):
     def Replacement_Dict_Creator(self, Desired_Permutation):
         """
         This method eats a desired permutation (string) and crafts two dictionaries with replacements that will applied using the replacetor.
+
+        It returns two Dictionaries: Dict_Perm_Pol, Dict_Perm_Mom
         """
 
         Perm = [*Desired_Permutation]
         Momenta = ['s12', 's23', 's34', 's45', 's56','s16']
-        
         Dict_Perm_Pol = {}
         Dict_Perm_Mom = {}
 
@@ -46,11 +49,9 @@ class Permutator (object):
 
         return Dict_Perm_Pol, Dict_Perm_Mom
 
-
-
     def Permuting (self, Desired_Permutation, Name_file_extension):
         """
-        This function eats the desired permutation string and transform the Monster input (Which will be read from Name file input) according to defined rules.
+        This function eats the desired permutation string and a file input, which will be transformed according to defined rules. It creates directories in case they do not exist. Results are written in the same file.
         """
 
         # Directory
@@ -86,7 +87,9 @@ class Permutator (object):
 
     def Permuting_Subleading (self, Desired_Permutation):
         """
-        This function eats the desired permutation string and transform the Monster input (Which will be read from Name file input) according to defined rules.
+        This function eats the desired permutation string, applies Sub_Permutator func to create subpermutations and transform the Monster input (Which will be read from Name file input of the class) according to defined rules. It creates directories in case they do not exist. Results are written in sub files.
+
+        It returns a lists of all subpermutations of the Desired_Permutation input.
         """
 
         # Directory
@@ -130,8 +133,9 @@ class Permutator (object):
                     f.writelines(' ')
                     f.writelines(item2)
                     f.write('\n')
-
         return Second_Order_Desired_Perm
+
+        
 
         
 

@@ -4,22 +4,24 @@ import itertools
 
 def Read_Amplitude_Func(Name_file_extension):
     """
-    This function eats file.csv or .txt file and spits out a string that the system can interpret correctly.
+    This function eats file.csv or .txt file and spits out a string that the system can read.
+
+    It returns the read file as a np.array.
     """
 
     Amplitude= np.genfromtxt(Name_file_extension, dtype='str', delimiter=' ')
-
 
     return Amplitude
 
 
 def Replacetor(Input_List, Replacements):
    """
-   This function eats:
-   1) An input file with terms to be replaced, that one has extracted with the selector tool.
+   This function eats two arguments:
+
+   1) An input list with terms to be replaced.
    2) Replacements (which is a dictionary), that tells you how to perform the replacement of different substring pieces.
 
-   This function will eat terms in a txt format, read through, perform substitutions and spit them out in a new file.
+   It returns the replaced list.
    """
 
    Replaced_List = list()
@@ -31,14 +33,13 @@ def Replacetor(Input_List, Replacements):
       Replaced_Term = regex.sub(lambda mo: Replacements[mo.string[mo.start():mo.end()]], str(item))
       Replaced_List.append(str(Replaced_Term))
 
-   
    return Replaced_List
 
 def Sub_Permutator (String_Input):
     """
-    This function will eat a string input and choose its second, third and fourth entry. Then, it will permute these 3 entries and create sub-permutation strings associated with F-terms, that will be substituted later.
+    This function eats a string input (argument) and choose its second, third and fourth entry. Then, it will permute these 3 entries and create sub-permutation strings associated with F-terms, that will be substituted later.
 
-    It spits out the subpermutation string and the associated F_term.
+    It returns two lists: Sub_Perm and F_Perm.
     """
 
     Sub_Perm = []

@@ -6,10 +6,11 @@ from .Chopper import *
 def Replacetor(Input_List, Replacements):
    """
    This function eats:
-   1) An input file with terms to be replaced, that one has extracted with the selector tool.
+
+   1) An input list with terms to be replaced.
    2) Replacements (which is a dictionary), that tells you how to perform the replacement of different substring pieces.
 
-   This function will eat terms in a txt format, read through, perform substitutions and spit them out in a new file.
+   It returns replaced terms as a list.
    """
 
    Replaced_List = list()

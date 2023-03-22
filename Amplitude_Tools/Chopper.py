@@ -3,9 +3,9 @@ from .Important_Functions import *
 
 class Chopper(object):
     """
-    This class eats a file, which is read by the Read_Amplitude_Func. This will convert everything there in a string of text,which will then allow us to chop it as deep as we want. We can also check that everything works by chopping and comparing. The only argument that eats is the monster (polynomial) to be chopped.
+    This class eats a file, which is read by the Read_Amplitude_Func. This will convert everything in a string of text, and chop it as deep as we want (Split_Monster). We can also check that everything works by chopping and comparing (Check_Right_Split).
 
-    It has several methods:
+    Two methods:
 
     Split_Monster, Check_Right_Split.
     """
@@ -16,13 +16,13 @@ class Chopper(object):
         
     def Split_Monster(self, number): 
         """
-        This function will eat the Monster (string of text) and it will chop it into smaller lists depending on the selected number (the extra argument) as follows:
+        This function will eat the Monster (string of text) and chop it into smaller lists depending on the selected number (argument of method) as:
 
         number == 0, it will chop each term of the string and spit out signs in 1 array and terms in other.
         number == 1, it will chop further the terms and divide in multiplication.
         number == 2, it will go further and isolate each variable in each term.
         
-        It also creates an empty list, where the chopped string will be storage.
+        It returns two lists: Signs and Splitted terms.
         """
 
         Split_Terms = np.array([]) # Empty array to split further those minuses
@@ -59,7 +59,9 @@ class Chopper(object):
     
     def Checking_Right_Slipt(self):
         """
-        This function within the class is in charge of checking that our Split_Monster function chops in the right way. It will chop, assamble back and compare, spitting a hurray if everything went fine.
+        This function checks that our Split_Monster function chops in the right way. It will chop, assamble back and compare.
+
+        It returns message.
         """
 
         Final_Check = np.array([]) # The reasambled pieces here.
