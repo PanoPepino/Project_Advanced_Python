@@ -2,6 +2,8 @@ import numpy as np
 import re
 from .Important_Functions import *
 from .Chopper import *
+from .Important_Functions import *
+
 
 def Replacetor(Input_List, Replacements):
    """

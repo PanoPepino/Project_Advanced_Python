@@ -1,6 +1,7 @@
 import numpy as np # importing numpy
 from .Important_Functions import *
 
+
 class Chopper(object):
     """
     This class eats a file, which is read by the Read_Amplitude_Func. This will convert everything in a string of text, and chop it as deep as we want (Split_Monster). We can also check that everything works by chopping and comparing (Check_Right_Split).

@@ -15,25 +15,34 @@ Basic_Replacements= { # Basic replacements of variables, to make easier connecti
     "tt3" : "(s34+s35+s45)",
   }
 
-Extra_Replacements = { # To simplify even further. 
+Extra_Replacements = { # To simplify even further. (Avoid first number to be even)
     "s46" : "s35",
-    "s25" : "s16",
-    "s65" : "s56", 
-    "s43" : "s34", 
+    "s25" : "s16", 
     "s45" : "s36",
-    "s32" : "s23",
-    "s42" : "s24",
-    "s63" : "s36",
-    "s64" : "s46"
+    "s24" : "s13",
+    "s26" : "s15",
+    "s23" : "s14",
+    "mZeta[2]" : "(-1)*Zeta[2]"
     }
 
-F_Replacements = { # Replacements for the F-functions that correspond to 1-loop corrections in Oliver's paper
-    "F234" : "mZeta[2]*(ss4*ss5+ss1*ss6-ss4*tt1-ss1*tt3+tt1*tt3)",
-    "F324" : "mZeta[2]*s13(ss2-ss6+tt3)",
-    "F432" : "mZeta[2]*s14*s25",
-    "F342" : "Zeta[2]*s13*s25",
-    "F423" : "Zeta[2]*s14*s35",
-    "F243" : "mZeta[2]*s35*(ss3-ss5+tt1)"
-}
+Sym_Replacements = { # To make always small number first. This can be coded. I have to think about it.
+    "s65" : "s56",
+    "s64" : "s46",
+    "s63" : "s36",
+    "s62" : "s26",
+    "s61" : "s16",
+    "s54" : "s45",
+    "s53" : "s35",
+    "s52" : "s25",
+    "s51" : "s15",
+    "s43" : "s34",
+    "s42" : "s24",
+    "s41" : "s14",
+    "s32" : "s23",
+    "s31" : "s13",
+    "s21" : "s12",    
+    }
+
+
 
 Polarisation = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6'] # The substring to look at

@@ -54,11 +54,18 @@ for item in Combinations:
         f.write('')
     for jtem in Extra_Sub_Perm:
         Location = 'Sequences/PT_' + item + '/' + 'AF_' + jtem + '.txt'
+        Sub_Location = 'Sequences/PT_' + item + '/' + 'AF_' + jtem + 'Mat' + '.txt'
         Sub_Selection = AT.Selector(Location)
         Sub_Selection.Looking_for_Specific_Configuration(Location)
+        with open(Sub_Location,'w') as f:
+            f.write('')
         with open(Location,'r') as firstfile, open(Location_write,'a') as secondfile: # Extra lines needed to export the txt in the right way to read in Mathematica.
             for line in firstfile:
                 secondfile.write(line.strip())
+        with open(Location,'r') as firstfile, open(Sub_Location,'a') as secondfile:
+            for line in firstfile:
+                secondfile.write(line.strip())
+        os.remove(Location) # To remove annoying files lying around.
 
 
 

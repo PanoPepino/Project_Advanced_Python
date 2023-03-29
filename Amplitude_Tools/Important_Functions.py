@@ -44,14 +44,39 @@ def Sub_Permutator (String_Input):
 
     Sub_Perm = []
     F_Perm = []
-    Perm = [*String_Input]
-    Sub_string = list(itertools.permutations (Perm[1:4]))
-    Sub_string_Pos = list(itertools.permutations (['2','3','4']))
+    Permu = [*String_Input]
+    Sub_string = list(itertools.permutations (Permu[1:4]))
+    Sub_string_Pos = list(itertools.permutations ([Permu[1],Permu[2],Permu[3]]))
     for i in range(len(Sub_string)):
         To_Rewrite = Sub_string[i][0] + Sub_string[i][1] + Sub_string[i][2]
         F_To_Rewrite = 'F' + Sub_string_Pos[i][0] + Sub_string_Pos[i][1] + Sub_string_Pos[i][2]
-        Result = Perm[0] + To_Rewrite + Perm[4] + Perm[-1]
+        Result = Permu[0] + To_Rewrite + Permu[4] + Permu[-1]
         Sub_Perm.append(Result)
         F_Perm.append(F_To_Rewrite)
     
-    return Sub_Perm, F_Perm
+    For_F = []
+    for item in Sub_Perm:
+        For_F.append([*item])
+    
+    return Sub_Perm, F_Perm, For_F
+
+def Oli_Corrections(Some_Permutation):
+    """
+    This function eats a permutation crafts a list of specific corrections computed by Oliver, up to alpha^{2} level.
+
+    Args:
+        Some_Permutation (String)
+    Output:
+        List
+    """
+    
+    Permu = [*Some_Permutation]
+    Corr234 = 'mZeta[2]*(' + 's' + Permu[3] + Permu[4] + '*s' + Permu[4] + Permu[5] + '+s' + Permu[0] + Permu[1] + '*s' + Permu[-1] + Permu[0] + '-s' + Permu[3] + Permu[4] + '*(' + 's' + Permu[0] + Permu[1] + '+s'  + Permu[0] + Permu[2] + '+s' + Permu[1] + Permu[2] + ')' + '-s' + Permu[0] + Permu[1] + '*(' + 's' + Permu[2] + Permu[3] + '+s' + Permu[2] + Permu[4] + '+s' + Permu[3] + Permu[4] +')' + '+' + '(' + 's' + Permu[0] + Permu[1] + '+s'  + Permu[0] + Permu[2] + '+s' + Permu[1] + Permu[2] + ')' + '*' +  '(' + 's' + Permu[2] + Permu[3] + '+s' + Permu[2] + Permu[4] + '+s' + Permu[3] + Permu[4] +')'+')'
+    Corr243 = 'mZeta[2]*(' + 's' + Permu[2] + Permu[4] + '*(s' + Permu[2] + Permu[3] +'-s' + Permu[4] + Permu[5] +'+(' + 's' + Permu[0] + Permu[1] + '+s' + Permu[0] + Permu[2] + '+s' + Permu[1] + Permu[2] + ')'+')'+')'
+    Corr324 = 'mZeta[2]*(' + 's' + Permu[0] + Permu[2] + '*(' + 's' + Permu[1] + Permu[2] + '-s' + Permu[-1] + Permu[0] + '+(s' + Permu[2] + Permu[3] + '+s' + Permu[2] + Permu[4] + '+s' + Permu[3] + Permu[4] + ')' + ')'+')'
+    Corr342 = 'Zeta[2]*(' + 's' + Permu[0] + Permu[2] + '*s' + Permu[1] + Permu[4] + ')'
+    Corr423 = 'Zeta[2]*(' + 's' + Permu[0] + Permu[3] + '*s' + Permu[2] + Permu[4] + ')'
+    Corr432 = 'mZeta[2]*(' + 's' + Permu[0] + Permu[3] + '*s' + Permu[1] + Permu[4] + ')'
+    
+    return Corr234, Corr243, Corr324, Corr342, Corr423, Corr432
+    
